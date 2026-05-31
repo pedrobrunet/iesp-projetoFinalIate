@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens Recebidas</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      .mensagens-container {
+        margin: 130px auto 40px;
+        padding: 20px 10px;
+      }
+      .mensagens-container h2 {
+        color: var(--darkblue);
+        font-size: 1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--ocher);
+      }
+      #tabelaMensagens {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        font-size: 0.88em;
+      }
+      #tabelaMensagens thead {
+        background-color: var(--darkblue);
+        color: white;
+      }
+      #tabelaMensagens thead th {
+        padding: 12px 14px;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 0.5px;
+      }
+      #tabelaMensagens tbody tr {
+        border-bottom: 1px solid #e0e0e0;
+        transition: background 0.2s;
+      }
+      #tabelaMensagens tbody tr:hover {
+        background-color: #f5f5f5;
+      }
+      #tabelaMensagens tbody td {
+        padding: 11px 14px;
+        color: #333;
+        vertical-align: top;
+      }
+      #tabelaMensagens tbody td:last-child {
+        max-width: 420px;
+        line-height: 1.5;
+      }
+      .sem-mensagens {
+        text-align: center;
+        color: #888;
+        padding: 30px;
+        font-style: italic;
+      }
+      .voltar-btn {
+        display: inline-block;
+        margin-bottom: 16px;
+        font-size: 0.8em;
+        color: var(--lightblue);
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .voltar-btn:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Aluguel de iates</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="mensagens-container">
+          <a href="admin.html" class="voltar-btn">← Voltar ao login</a>
+          <h2>Mensagens Recebidas</h2>
+
+          <table id="tabelaMensagens">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Mensagem</th>
+              </tr>
+            </thead>
+            <tbody id="corpoTabela">
+              <tr>
+                <td colspan="4" class="sem-mensagens">Carregando mensagens...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+      var mensagens = obterMensagens();
+      var corpo = $("#corpoTabela");
+
+      corpo.empty();
+
+      if (!mensagens || mensagens.length === 0) {
+        corpo.append(
+          '<tr><td colspan="4" class="sem-mensagens">Nenhuma mensagem encontrada.</td></tr>'
+        );
+      } else {
+        for (var i = 0; i < mensagens.length; i++) {
+          var msg = mensagens[i];
+          var linha = "<tr>" +
+            "<td>" + (i + 1) + "</td>" +
+            "<td>" + (msg.nome || "") + "</td>" +
+            "<td>" + (msg.email || "") + "</td>" +
+            "<td>" + (msg.mensagem || "") + "</td>" +
+            "</tr>";
+          corpo.append(linha);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Administração</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      .admin-container {
+        max-width: 400px;
+        margin: 140px auto 40px;
+        padding: 30px;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      }
+      .admin-container h2 {
+        text-align: center;
+        color: var(--darkblue);
+        margin-bottom: 24px;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .admin-container .entry {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 14px;
+      }
+      .admin-container label {
+        font: normal 700 0.8em var(--pagefont);
+        color: var(--ocher);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .admin-container input {
+        width: 100%;
+        padding: 7px 5px;
+        outline: 0;
+        border: 0;
+        border-bottom: 1px solid #999;
+        font-family: var(--pagefont);
+        font-size: 0.95em;
+      }
+      #msgErro {
+        display: none;
+        color: #c0392b;
+        font-size: 0.82em;
+        text-align: center;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+      .buttons {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Aluguel de iates</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="admin-container">
+          <h2>Acesso Administrativo</h2>
+
+          <div class="entry">
+            <label for="emailAdmin">E-mail</label>
+            <input type="email" id="emailAdmin" placeholder="admin@admin.com" />
+          </div>
+
+          <div class="entry">
+            <label for="senhaAdmin">Senha</label>
+            <input type="password" id="senhaAdmin" placeholder="••••" />
+          </div>
+
+          <p id="msgErro">E-mail e Senha inválidos</p>
+
+          <div class="buttons">
+            <button class="button" id="btnEntrar">Entrar</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+      $("#btnEntrar").click(function () {
+        var email = $("#emailAdmin").val();
+        var senha = $("#senhaAdmin").val();
+
+        var objLoginSenha = {
+          email: email,
+          senha: senha
+        };
+
+        var resultado = validarUsuario(objLoginSenha);
+
+        if (resultado === true) {
+          window.location.href = "mensagens.html";
+        } else {
+          $("#msgErro").show();
+        }
+      });
+    </script>
+  </body>
+</html>
