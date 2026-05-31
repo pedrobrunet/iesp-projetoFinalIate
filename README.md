@@ -1,3 +1,27 @@
+# 🚢 Luxo — Aluguel de Iates
+
+Projeto web estático desenvolvido como atividade acadêmica, com integração a uma API externa para envio e leitura de mensagens de contato, além de autenticação de usuário administrador.
+
+---
+
+## 📁 Estrutura do Projeto
+
+    projeto-iates/
+    ├── index.html
+    ├── aluguel.html
+    ├── destinos.html
+    ├── tripulacao.html
+    ├── contato.html        ← 1ª implementação
+    ├── admin.html          ← 2ª implementação (nova página)
+    ├── mensagens.html      ← 3ª implementação (nova página)
+    ├── css/
+    │   └── default.css
+    ├── js/
+    │   ├── jquery-3.6.4.min.js
+    │   └── api.js
+    └── images/
+        └── ...
+
 ---
 
 ## ⚙️ Funcionalidades Implementadas
